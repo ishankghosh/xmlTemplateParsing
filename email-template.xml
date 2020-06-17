@@ -1,0 +1,39 @@
+@require(data)
+<Recipient>
+<EMAIL>@data['email']</EMAIL>
+<FIRSTNAME>@data['firstname']</FIRSTNAME>
+<LASTNAME>@data['lastname']</LASTNAME>
+@if 'upcomingorders' in data:
+<UPCOMING_BOOKINGS>
+	@for UORDER in data['upcomingorders']:
+		<ORDER>
+			<ORDERID>@UORDER['ORDERID']</ORDERID>
+			<PICKUP>@UORDER['PICKUP']</PICKUP>
+			<DROPOFF>@UORDER['DROPOFF']</DROPOFF>
+		</ORDER>
+	@end
+</UPCOMING_BOOKINGS>
+@end
+@if 'PAST_BOOKINGS' in data:
+<PAST_BOOKINGS>
+	@for PORDER in data['PAST_BOOKINGS']:
+		<ORDER>
+			<ORDERID>@PORDER['ORDERID']</ORDERID>
+			<PICKUP>@PORDER['PICKUP']</PICKUP>
+			<DROPOFF>@PORDER['DROPOFF']</DROPOFF>
+		</ORDER>
+	@end
+</PAST_BOOKINGS>
+@endif
+@if 'CANCELORDERS' in data:
+<CANCEL_BOOKINGS>
+	@for CORDER in data["CANCELORDERS"]:
+		<ORDER>
+			<ORDERID>@CORDER['ORDERID']</ORDERID>
+			<PICKUP>@CORDER['PICKUP']</PICKUP>
+			<DROPOFF>@CORDER['DROPOFF']</DROPOFF>
+		</ORDER>
+	@end
+</CANCEL_BOOKINGS>
+@endif
+</Recipient>
